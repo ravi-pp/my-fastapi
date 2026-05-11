@@ -1,0 +1,32 @@
+
+body {
+  background: #fafafa;
+  color: #33333a;
+  padding-top: 70px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #323232;
+}
+
+.main-color {
+  background-color: #0e76a8 ;
+}
+
+.strike-through-td {
+    text-decoration: line-through;
+}
+
+/* h1 {
+  color: red;
+} */
+.homeheading{
+  columns: #9d9d9d;
+  background-color: rgb(100, 159, 209);
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+
+
