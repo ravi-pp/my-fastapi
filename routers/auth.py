@@ -18,7 +18,7 @@ router = APIRouter(
     tags=["auth"]
 )
 
-templates = Jinja2Templates(directory= "../TodoApp/templates")
+templates = Jinja2Templates(directory= "templates")
 
 SECRET_KEY="ab3120f7a9d26fa79c744825caa61cd112a198e9e83eae9abbe269d75071bb5d"
 ALGORITHM= "HS256"

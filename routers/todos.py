@@ -50,7 +50,7 @@ def get_db():
 #user
 user_dependency = Annotated[dict, Depends(get_current_user)]
 db_dependency = Annotated[Session, Depends(get_db)]
-templates = Jinja2Templates(directory="../TodoApp/templates")
+templates = Jinja2Templates(directory="templates")
 
 
 ########Template
