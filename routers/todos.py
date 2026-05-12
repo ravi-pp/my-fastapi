@@ -61,7 +61,7 @@ def redirect_to_login():
     return response
 
 @todoapp.get('/todos/todo-page')
-async def todo_page(request: Request, db: db_dependency):
+async def todo_list_page(request: Request, db: db_dependency):
     try:
         user =  get_current_user(request.cookies.get("access_token"))
         if user is None:
@@ -72,16 +72,28 @@ async def todo_page(request: Request, db: db_dependency):
         return redirect_to_login()
     
 @todoapp.get('/todos/add-todo-page')
-def login_page(request: Request):
-    return templates.TemplateResponse('add-todo.html', {"request": request})
+def add_todo_page(request: Request):
+    
+    if request.cookies.get("access_token") is None:
+       return redirect_to_login()
+    else:
+        user =  get_current_user(request.cookies.get("access_token"))
+        
+    return templates.TemplateResponse('add-todo.html', {"request": request, 'user':user})
 
 @todoapp.get('/todos/edit-todo-page/{todo_id}')
-def login_page(request: Request, db: db_dependency, todo_id: int = Path(gt=0)):
+def edit_todo_page(request: Request, db: db_dependency, todo_id: int = Path(gt=0)):
+    
+    if request.cookies.get("access_token") is None:
+        return redirect_to_login()
+    else:
+        user =  get_current_user(request.cookies.get("access_token"))
+        
     todo = db.query(Todos).filter(Todos.id == todo_id).first()
     if not todo:
         return RedirectResponse(url="/todos/add-todo-page")
     
-    return templates.TemplateResponse('edit-todo.html', {"request": request, "todo":todo})
+    return templates.TemplateResponse('edit-todo.html', {"request": request, "todo":todo, 'user':user})
 
 
 #######End Template
