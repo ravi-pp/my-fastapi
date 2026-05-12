@@ -6,7 +6,11 @@ from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from routers.auth import get_current_user
 
-app = FastAPI(version="1.0.1")
+app = FastAPI(
+        title= "Todo App",
+        description= "Todo app for demo.",
+        version="1.0.1",
+    )
 # app.mount('/v1', "")
 
 app.include_router(auth.router)
@@ -19,8 +23,8 @@ models.Base.metadata.create_all(bind=engine)
 templates = Jinja2Templates(directory="./templates")
 app.mount("/static", StaticFiles(directory="./static"), name="static")
 
-@app.get('/home')
-@app.get('/')
+@app.get('/home', include_in_schema=False)
+@app.get('/', include_in_schema=False)
 def home(request: Request):
     if request.cookies.get("access_token"):
         user =  get_current_user(request.cookies.get("access_token"))
