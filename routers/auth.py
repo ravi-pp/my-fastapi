@@ -65,11 +65,11 @@ database_dependancy = Annotated[Session, Depends(get_db)]
 
 ############Template
 
-@router.get('/login-page')
+@router.get('/login-page', include_in_schema=False)
 def login_page(request: Request):
     return templates.TemplateResponse('login.html', {"request": request})
 
-@router.get('/register-page')
+@router.get('/register-page', include_in_schema=False)
 def login_page(request: Request):
     return templates.TemplateResponse('register.html', {"request": request})
 

@@ -60,7 +60,7 @@ def redirect_to_login():
     response.delete_cookie(key='access_token')
     return response
 
-@todoapp.get('/todos/todo-page')
+@todoapp.get('/todos/todo-page', include_in_schema=False)
 async def todo_list_page(request: Request, db: db_dependency):
     try:
         user =  get_current_user(request.cookies.get("access_token"))
@@ -71,7 +71,7 @@ async def todo_list_page(request: Request, db: db_dependency):
     except HTTPException as e:
         return redirect_to_login()
     
-@todoapp.get('/todos/add-todo-page')
+@todoapp.get('/todos/add-todo-page', include_in_schema=False)
 def add_todo_page(request: Request):
     
     if request.cookies.get("access_token") is None:
@@ -81,7 +81,7 @@ def add_todo_page(request: Request):
         
     return templates.TemplateResponse('add-todo.html', {"request": request, 'user':user})
 
-@todoapp.get('/todos/edit-todo-page/{todo_id}')
+@todoapp.get('/todos/edit-todo-page/{todo_id}', include_in_schema=False)
 def edit_todo_page(request: Request, db: db_dependency, todo_id: int = Path(gt=0)):
     
     if request.cookies.get("access_token") is None:
