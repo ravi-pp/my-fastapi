@@ -1,13 +1,16 @@
 
     {% include 'layout.html' %}
     <br>
-   <div class="">
+   <div class="col-md-12">
      <h1 class="homeheading mt-5">
         <marquee behavior="" direction=""> Welcome to this FastAPI TodoApp!</marquee>
     </h1>
     <div style="text-align: right;">
         <span><b>Developer:</b> <i>{{developer}}</i></span>
     </div>
+   </div>
+   <div class="col-md-12 text-center">
+    <img src="{{ url_for('static', path='/image/todo-list-vector.jpg') }}" alt="todo-image" width="30%"/>
    </div>
 
     <script>
